@@ -17,7 +17,6 @@ from webdriver_manager.chrome import ChromeDriverManager
 def site():
     servico = Service(ChromeDriverManager().install())
     navegador = webdriver.Chrome(service=servico)
-    navegador = webdriver.Chrome()
     
     search = "dolar"  # o que pesquisar 
 
