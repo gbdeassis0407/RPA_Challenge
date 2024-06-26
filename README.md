@@ -1,60 +1,92 @@
-# Template: Python - Minimal
+# News Site Data Extraction Bot
 
-This template leverages the new [Python framework](https://github.com/robocorp/robocorp), the [libraries](https://github.com/robocorp/robocorp/blob/master/docs/README.md#python-libraries) from to same project as well.
+## Overview
 
-The template provides you with the basic structure of a Python project: logging out of the box and controlling your tasks without fiddling with the base Python stuff. The environment contains the most used libraries, so you do not have to start thinking about those right away. 
+Our mission is to enable all people to do the best work of their lives—the first act in achieving that mission is to help companies automate tedious but critical business processes. This RPA challenge showcases the ability to build a bot for purposes of process automation.
 
-👉 Other templates are available as well via our tooling and on our [Portal](https://robocorp.com/portal/tag/template)
+## 🟢 The Challenge
 
-## Running
+This challenge involves automating the process of extracting data from a news site.
 
-#### VS Code
-1. Get [Robocorp Code](https://robocorp.com/docs/developer-tools/visual-studio-code/extension-features) -extension for VS Code.
-1. You'll get an easy-to-use side panel and powerful command-palette commands for running, debugging, code completion, docs, etc.
+You should push your code to a **public** Github repo, and then use that repo to [create a Robocorp Control Room process](https://robocorp.com/docs/courses/beginners-course-python/12-running-in-robocorp-cloud). The process should have a completed successful run before submission. Make sure to [write your files to the `/output` directory](https://robocorp.com/docs/courses/beginners-course-python/9-collecting-the-results#saving-the-file-to-the-output-directory) so that they are visible in the artifacts list.
 
-#### Command line
+### The Source
 
-1. [Get RCC](https://github.com/robocorp/rcc?tab=readme-ov-file#getting-started)
-1. Use the command: `rcc run`
+You are free to choose from any general news website. Some examples include:
 
-## Results
+- [AP News](https://apnews.com/)
+- [Al Jazeera](https://www.aljazeera.com/)
+- [Reuters](https://www.reuters.com/)
+- [Gothamist](https://gothamist.com/)
+- [LA Times](https://www.latimes.com/)
+- [Yahoo News](https://news.yahoo.com/)
 
-🚀 After running the bot, check out the `log.html` under the `output` -folder.
+### Parameters
 
-## Dependencies
+The process must handle three parameters via the Robocorp work item:
 
-We strongly recommend getting familiar with adding your dependencies in [conda.yaml](conda.yaml) to control your Python dependencies and the whole Python environment for your automation.
+- **Search Phrase**
+- **News Category/Section/Topic**
+- **Number of Months for which you need to receive news**
 
-<details>
-  <summary>🙋‍♂️ "Why not just pip install...?"</summary>
+    Example: 
+    - 0 or 1 - only the current month
+    - 2 - current and previous month
+    - 3 - current and two previous months, and so on
 
-Think of [conda.yaml](conda.yaml) as an equivalent of the requirements.txt, but much better. 👩‍💻 With `conda.yaml`, you are not just controlling your PyPI dependencies; you control the complete Python environment, which makes things repeatable and easy.
+These parameters can be defined within a configuration file but should ideally be provided via a [Robocloud workitem](https://rpaframework.org/libraries/robocorp_workitems/).
 
-👉 You will probably need to run your code on another machine quite soon, so by using `conda.yaml`:
-- You can avoid `Works on my machine` -cases
-- You do not need to manage Python installations on all the machines
-- You can control exactly which version of Python your automation will run on 
-  - You'll also control the pip version to avoid dep. resolution changes
-- No need for venv, pyenv, ... tooling and knowledge sharing inside your team.
-- Define dependencies in conda.yaml, let our tooling do the heavy lifting.
-- You get all the content of [conda-forge](https://prefix.dev/channels/conda-forge) without any extra tooling
+### The Process
 
-> Dive deeper with [these](https://github.com/robocorp/rcc/blob/master/docs/recipes.md#what-is-in-condayaml) resources.
+The main steps:
 
-</details>
-<br/>
+1. Open the news site.
+2. Enter the search phrase in the search field.
+3. On the results page:
+    - If possible, select a news category or section.
+    - Choose the latest (i.e., newest) news.
+4. Extract the following values:
+    - Title
+    - Date
+    - Description
+5. Store the extracted data in an Excel file:
+    - Title
+    - Date
+    - Description (if available)
+    - Picture filename
+    - Count of search phrases in the title and description
+    - Boolean indicating whether the title or description contains any amount of money
+6. Download the news picture and specify the file name in the Excel file.
+7. Repeat steps 4-6 for all news that falls within the required time period.
 
-> The full power of [rpaframework](https://robocorp.com/docs/python/rpa-framework) -libraries is also available on Python as a backup while we implement the new Python libraries.
+### Submission Checklist
 
-## What now?
+1. **Quality Code**: Ensure your code is clean, maintainable, and well-architected. Follow [PEP8 compliance](https://peps.python.org/pep-0008/) and employ [OOP principles](https://peps.python.org/pep-0008/).
+2. **Resiliency**: Ensure your architecture is fault-tolerant and can handle failures at both the application and website levels. Utilize [explicit waits](https://selenium-python.readthedocs.io/waits.html) and the [Robocorp wrapper browser for Selenium](https://rpaframework.org/libraries/browser_selenium/python.html).
+3. **Best Practices**: Follow best RPA practices. Use proper [logging](https://docs.python.org/3/library/logging.html) and appropriate [string formatting](https://www.digitalocean.com/community/tutorials/python-string-concatenation) in your logs (Python 3.8+).
 
-🚀 Now, go get'em
+## Getting Started
 
-Start writing Python and remember that the AI/LLM's out there are getting really good and creating Python code specifically.
+### Prerequisites
 
-👉 Try out [Robocorp ReMark 💬](https://chat.robocorp.com)
+- Python 3.8+
+- Robocorp Lab or Robocorp Code
+- Required Python libraries (specified in requirements.txt)
 
-For more information, do not forget to check out the following:
-- [Robocorp Documentation -site](https://robocorp.com/docs)
-- [Portal for more examples](https://robocorp.com/portal)
-- Follow our main [robocorp -repository](https://github.com/robocorp/robocorp) as it is the main location where we developed the libraries and the framework.
+### Installation
+
+1. Clone the repo:
+   ```sh
+   git clone https://github.com/yourusername/news-extraction-bot.git
+  ```
+  2. Install the required libraries:
+- Copiar código
+```sh
+pip install -r requirements.txt
+```
+## Usage
+  Set up your Robocorp Control Room process following this guide.
+  Define the parameters in a Robocloud work item.
+- Run the process.
+- Output
+- The extracted data will be stored in an Excel file in the /output directory, along with the downloaded news pictures.
