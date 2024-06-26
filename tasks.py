@@ -12,12 +12,8 @@ from selenium.webdriver.support.ui import WebDriverWait # type: ignore
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.common.by import By
 from webdriver_manager.chrome import ChromeDriverManager
-from RPA.Browser.Selenium import Selenium
-from RPA.Tables import Table
-from RPA.Excel.Files import Files
 
 @task
-
 def site():
     servico = Service(ChromeDriverManager().install())
     navegador = webdriver.Chrome(service=servico)
@@ -34,8 +30,9 @@ def site():
         
         # Interage com a página
         navegador.find_element(By.XPATH, '//*[@id="Page-header-trending-zephr"]/div[2]/div[3]/bsp-search-overlay/button').click()
-        navegador.find_element(By.XPATH, '//*[@id="Page-header-trending-zephr"]/div[2]/div[3]/bsp-search-overlay/div/form/label/input').send_keys(search)
-        navegador.find_element(By.XPATH, '//*[@id="Page-header-trending-zephr"]/div[2]/div[3]/bsp-search-overlay/div/form/label/input').send_keys(Keys.ENTER)
+        search_input = navegador.find_element(By.XPATH, '//*[@id="Page-header-trending-zephr"]/div[2]/div[3]/bsp-search-overlay/div/form/label/input')
+        search_input.send_keys(search)
+        search_input.send_keys(Keys.ENTER)
         
         WebDriverWait(navegador, 5).until(
             EC.presence_of_element_located((By.XPATH, '/html/body/div[3]/bsp-search-results-module/form/div[2]/div/bsp-search-filters/div/main/div[1]/span'))
@@ -43,7 +40,7 @@ def site():
         
         # Captura a nova URL
         url = navegador.current_url
-        headers = {"User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/123.0.0.0 Safari/537.36 OPR/109.0.0.0"}
+        headers = {"User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, Gecko) Chrome/123.0.0.0 Safari/537.36 OPR/109.0.0.0"}
 
         # Obter o conteúdo HTML da página
         response = requests.get(url, headers=headers)
@@ -63,6 +60,8 @@ def site():
     return articles, timestamp_elements, search
 
 def find_dolar(texto):
+    if texto is None:
+        return False
     padrao = r'\$[\d,]+|\b\d+\s+dólares\b'
     res = re.findall(padrao, texto)
     return bool(res)
