@@ -8,7 +8,8 @@ Our mission is to enable all people to do the best work of their lives—the fir
 
 This challenge involves automating the process of extracting data from a news site.
 
-You should push your code to a **public** Github repo, and then use that repo to [create a Robocorp Control Room process](https://robocorp.com/docs/courses/beginners-course-python/12-running-in-robocorp-cloud). The process should have a completed successful run before submission. Make sure to [write your files to the `/output` directory](https://robocorp.com/docs/courses/beginners-course-python/9-collecting-the-results#saving-the-file-to-the-output-directory) so that they are visible in the artifacts list.
+You should push your code to a **public** Github repo, and then use that repo to [create a Robocorp Control Room process](https://robocorp.com/docs/courses/beginners-course-python/12-running-in-robocorp-cloud). 
+The process should have a completed successful run before submission. Make sure to [write your files to the `/output` directory](https://robocorp.com/docs/courses/beginners-course-python/9-collecting-the-results#saving-the-file-to-the-output-directory) so that they are visible in the artifacts list.
 
 ### The Source
 
