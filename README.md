@@ -76,10 +76,11 @@ The main steps:
 ### Installation
 
 1. Clone the repo:
-   ```sh
+  ```sh
    git clone https://github.com/gbdeassis0407/RPA_Challenge.git
   ```
-  2. Install the required libraries:
+
+2. Install the required libraries:
   - Copiar código
   ```sh
   pip install -r requirements.txt
