@@ -77,13 +77,13 @@ The main steps:
 
 1. Clone the repo:
    ```sh
-   git clone https://github.com/yourusername/news-extraction-bot.git
+   git clone https://github.com/gbdeassis0407/RPA_Challenge.git
   ```
   2. Install the required libraries:
-- Copiar código
-```sh
-pip install -r requirements.txt
-```
+  - Copiar código
+  ```sh
+  pip install -r requirements.txt
+  ```
 ## Usage
   Set up your Robocorp Control Room process following this guide.
   Define the parameters in a Robocloud work item.
