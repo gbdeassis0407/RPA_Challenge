@@ -1,32 +1,16 @@
 channels:
   - conda-forge
-
 dependencies:
-  - python=3.10.12                # https://pyreadiness.org/3.10
-  - pip=23.2.1                    # https://pip.pypa.io/en/stable/news
-  - robocorp-truststore=0.8.0     # https://pypi.org/project/robocorp-truststore/
+  - python=3.10.12
+  - pip=23.2.1
+  - robocorp-truststore=0.8.0
   - pip:
-    - rpaframework==28.0.0        # https://rpaframework.org/releasenotes.html
-    - robocorp==1.4.0             # https://pypi.org/project/robocorp
-    - robocorp-browser==2.2.1     # https://pypi.org/project/robocorp-browser
+    - rpaframework==28.0.0
+    - robocorp==1.4.0
+    - robocorp-browser==2.2.1
     - requests
     - pandas
     - beautifulsoup4
     - selenium
     - webdriver-manager
-
-# Add this section to manually install Google Chrome
-postRunScripts:
-  - |
-    #!/bin/bash
-    set -e
-    if ! command -v google-chrome &> /dev/null
-    then
-      echo "Google Chrome could not be found, installing..."
-      wget -q -O - https://dl.google.com/linux/linux_signing_key.pub | sudo apt-key add -
-      echo "deb [arch=amd64] http://dl.google.com/linux/chrome/deb/ stable main" | sudo tee /etc/apt/sources.list.d/google-chrome.list
-      sudo apt-get update
-      sudo apt-get install -y google-chrome-stable
-    else
-      echo "Google Chrome is already installed"
-    fi
+    - google-chrome
